@@ -29,6 +29,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+/*
 app.post('/name', function (req, res) {
     res.send("Hello you sent " +
         req.body.firstname + " " +
@@ -38,7 +39,7 @@ app.post('/name', function (req, res) {
 app.get('/', function (req, res) {
     res.send('Hello from Express');
 })
-
+*/
 app.post('/api/posts', function (req, res) {
     console.log("post successful");
     console.log(req.body.title);
@@ -53,9 +54,13 @@ app.post('/api/posts', function (req, res) {
 
 app.get('/api/posts', function (req, res) {
     PostModel.find(function (err, data) {
+        if (err){
+            res.send(err);
+        }
         res.json(data);
     })
 })
+
 
 
 var server = app.listen(8081, function () {
