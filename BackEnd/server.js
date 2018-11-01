@@ -60,7 +60,7 @@ app.get('/api/posts', function (req, res) {
         res.json(data);
     })
 })
-
+//working
 app.get('/getposts/:title', function (req, res) {
     console.log("Get " + req.params.title + " Post");
     PostData.findOne({ 'title': req.params.title },
