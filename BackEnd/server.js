@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 
-
+//mongoose data here
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://nouman:nouman123@ds255970.mlab.com:55970/lab_with_mongodb';
 mongoose.connect(mongoDB);
