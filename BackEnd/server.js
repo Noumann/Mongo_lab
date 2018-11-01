@@ -44,7 +44,7 @@ app.post('/api/posts', function (req, res) {
     console.log(req.body.title);
     console.log(req.body.content);
 
-
+//test
     PostModel.create({
         title: req.body.title,
         content: req.body.content
