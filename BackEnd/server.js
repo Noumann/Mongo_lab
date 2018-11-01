@@ -45,7 +45,7 @@ app.post('/api/posts', function (req, res) {
     console.log(req.body.title);
     console.log(req.body.content);
 
-//test
+    //test
     PostModel.create({
         title: req.body.title,
         content: req.body.content
@@ -54,13 +54,22 @@ app.post('/api/posts', function (req, res) {
 
 app.get('/api/posts', function (req, res) {
     PostModel.find(function (err, data) {
-        if (err){
+        if (err) {
             res.send(err);
         }
         res.json(data);
     })
 })
 
+app.get('/getposts/:title', function (req, res) {
+    console.log("Get " + req.params.title + " Post");
+    PostData.findOne({ 'title': req.params.title },
+        function (err, data) {
+            if (err)
+                return handleError(err);
+            res.json(data);
+        });
+});
 
 
 var server = app.listen(8081, function () {
