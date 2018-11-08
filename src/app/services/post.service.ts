@@ -26,4 +26,8 @@ export class PostService {
     return this.http.post("http://localhost:8081/api/posts",post);
   }
 
+  deletePost(id:String) : Observable<any>{
+    return this.http.delete("http://localhost:8081/api/posts/"+id);
+  }
+
 }

@@ -15,7 +15,7 @@ const PostSchema = new Schema({
 });
 
 //database 
-const PostModel = mongoose.model('postA', PostSchema);
+var PostModel = mongoose.model('postA', PostSchema);
 
 
 //Here we are configuring express to use body-parser as middle-ware. 
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -49,7 +50,8 @@ app.post('/api/posts', function (req, res) {
     PostModel.create({
         title: req.body.title,
         content: req.body.content
-    })
+    });
+    res.send('Item Added');
 })
 
 app.get('/api/posts', function (req, res) {
@@ -70,6 +72,14 @@ app.get('/getposts/:title', function (req, res) {
             res.json(data);
         });
 });
+
+
+app.delete('/api/posts/:id', function (req, res) {
+    PostModel.deleteOne({ _id: req.params.id },
+        function (err, data) {
+            res.send(data);
+        });
+})
 
 
 var server = app.listen(8081, function () {
